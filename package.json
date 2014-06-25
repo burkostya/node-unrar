@@ -1,0 +1,26 @@
+{
+  "author": "Konstantin Burykin <burkostya@gmail.com>",
+  "name": "unrar",
+  "description": "Unrars rar archives",
+  "version": "0.1.0",
+  "license": "MIT",
+  "scripts": {
+    "test": "mocha"
+  },
+  "homepage": "http://github.com/burkostya/unrar",
+  "repository": "git://github.com:burkostya/unrar.git",
+  "bugs": "http://github.com/burkostya/unrar/issues",
+  "main": "index.js",
+  "engines": {
+    "node": ">= 0.10.21"
+  },
+  "files": [
+    "index.js",
+    "README.md"
+  ],
+  "devDependencies": {
+    "mocha": "~1.14.0",
+    "chai": "~1.8.1"
+  },
+  "readmeFilename": "README.md"
+}
