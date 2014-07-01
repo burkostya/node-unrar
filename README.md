@@ -1,15 +1,58 @@
 # unrar
 
-Unrars rar archives
+Unrars rar archives with `unrar` utility
 
 ## Installation
 
 `npm install unrar`
 
+You must have `unrar` tool in the path
+
+## Example
+
+```js
+var Unrar = require('unrar');
+
+var archive = new Unrar('archive.rar');
+// or
+// var archive = new Unrar({
+//   path:      protectedArchivePath,
+//   arguments: ['-pPassword']
+// });
+
+archive.list(function (err, entries) {
+  var stream = archive.stream('binary'); // name of entry
+  stream.on('error', console.error);
+  stream.pipe(require('fs').createWriteStream('some-binary-file'));
+});
+```
+
 ## Usage
 
-`var module = require('unrar')`
+```js
+var Unrar = require('unrar');
+```
 
 ## API
 
-## Example
+### Constructor
+
+```js
+var archive = new Unrar('/path/to/some/file.rar');
+```
+
+* `options` *String|Object* File path or options object
+  - `path` *String* File path
+  - `arguments` *Array* Additional arguments for `unrar` command
+
+### archive.list(callback)
+
+* `callback` *Function*
+  - `error` Error
+  - `entries` *Array* Descriptions of archive entries
+
+### archive.stream(entryName)
+
+* `entryName` *String* Name of entry for extracting
+
+Returns readable stream

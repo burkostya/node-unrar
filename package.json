@@ -15,6 +15,7 @@
     "node": ">= 0.10.21"
   },
   "files": [
+    "lib",
     "index.js",
     "README.md"
   ],
