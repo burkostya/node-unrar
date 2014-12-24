@@ -7,9 +7,9 @@
   "scripts": {
     "test": "mocha"
   },
-  "homepage": "http://github.com/burkostya/unrar",
-  "repository": "git://github.com:burkostya/unrar.git",
-  "bugs": "http://github.com/burkostya/unrar/issues",
+  "homepage": "http://github.com/burkostya/node-unrar",
+  "repository": "git://github.com:burkostya/node-unrar.git",
+  "bugs": "http://github.com/burkostya/node-unrar/issues",
   "main": "index.js",
   "engines": {
     "node": ">= 0.10.21"
