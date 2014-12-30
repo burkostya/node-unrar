@@ -21,7 +21,7 @@ var archive = new Unrar('archive.rar');
 // });
 
 archive.list(function (err, entries) {
-  var stream = archive.stream('binary'); // name of entry
+  var stream = archive.stream('some_binary_entry'); // name of entry
   stream.on('error', console.error);
   stream.pipe(require('fs').createWriteStream('some-binary-file'));
 });
