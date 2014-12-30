@@ -2,7 +2,7 @@
   "author": "Konstantin Burykin <burkostya@gmail.com>",
   "name": "unrar",
   "description": "Unrars rar archives",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "license": "MIT",
   "scripts": {
     "test": "mocha"
