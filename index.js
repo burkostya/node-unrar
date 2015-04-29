@@ -54,7 +54,6 @@ Unrar.prototype._exec = function (args, done) {
   'unrar ' +
   args.join(' ') +
   ' ' + this._filepath;
-  console.log('calling exec')
   exec(command, function (err, stdout, stderr) {
     if (err) { return done(err); }
     if (stderr.length > 0) { return done(new Error(stderr)); }
