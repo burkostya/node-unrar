@@ -53,9 +53,9 @@ Unrar.prototype._exec = function (args, done) {
   var self = this;
   args = args.concat(self._arguments);
   var command =
-  'unrar ' +
-  args.join(' ') +
-  ' ' + self._filepath;
+    'unrar ' +
+    args.join(' ') +
+    ' ' + self._filepath;
   exec(command, function (err, stdout, stderr) {
     if (err) { return done(err); }
     if (stderr.length > 0) { return done(new Error(stderr)); }
