@@ -10,6 +10,7 @@ var UnrarStream = require("./lib/stream.js");
 var Unrar = function (options) {
   this._arguments = options.arguments || [];
   this._filepath  = options.path || options;
+  this._failOnPasswords = options.failOnPasswords || false;
 };
 
 /**
@@ -49,14 +50,18 @@ Unrar.prototype.stream = function (entryname) {
  * @param  {Function} done Callback
  */
 Unrar.prototype._exec = function (args, done) {
-  args = args.concat(this._arguments);
+  var self = this;
+  args = args.concat(self._arguments);
   var command =
   'unrar ' +
   args.join(' ') +
-  ' ' + this._filepath;
+  ' ' + self._filepath;
   exec(command, function (err, stdout, stderr) {
     if (err) { return done(err); }
     if (stderr.length > 0) { return done(new Error(stderr)); }
+    if (stdout.length > 0 && stdout.match(/.*is not RAR archive.*/g)) { return done(new Error('Unsupported RAR file.'))}
+    if (stdout.length > 0 && stdout.match(/.*Checksum error in the encrypted file.*/g)) { return done(new Error('Invalid Password.'))}
+    if (self._failOnPasswords && stdout.match(/.*Flags: encrypted.*/g)) { return done(new Error('Password protected file'))}
     done(null, stdout);
   });
 };
