@@ -59,9 +59,9 @@ Unrar.prototype._exec = function (args, done) {
   exec(command, function (err, stdout, stderr) {
     if (err) { return done(err); }
     if (stderr.length > 0) { return done(new Error(stderr)); }
-    if (stdout.length > 0 && stdout.match(/.*is not RAR archive.*/g)) { return done(new Error('Unsupported RAR file.'))}
-    if (stdout.length > 0 && stdout.match(/.*Checksum error in the encrypted file.*/g)) { return done(new Error('Invalid Password.'))}
-    if (self._failOnPasswords && stdout.match(/.*Flags: encrypted.*/g)) { return done(new Error('Password protected file'))}
+    if (stdout.length > 0 && stdout.match(/.*is not RAR archive.*/g)) { return done(new Error('Unsupported RAR file.')); }
+    if (stdout.length > 0 && stdout.match(/.*Checksum error in the encrypted file.*/g)) { return done(new Error('Invalid Password.')); }
+    if (self._failOnPasswords && stdout.match(/.*Flags: encrypted.*/g)) { return done(new Error('Password protected file')); }
     done(null, stdout);
   });
 };
