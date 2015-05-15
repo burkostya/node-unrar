@@ -1,7 +1,7 @@
 var child_process = require('child_process');
 var exec  = child_process.exec;
 
-var UnrarStream = require("./lib/stream.js");
+var UnrarStream = require('./lib/stream.js');
 
 /**
  * constructor
