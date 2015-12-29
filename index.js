@@ -23,7 +23,7 @@ Unrar.prototype.list = function (done) {
 
   self._exec(['vt'], function (err, stdout) {
     if (err) { return done(err); }
-    var chunks = stdout.split('\n\n');
+    var chunks = stdout.split(/\r?\n\r?\n/);
     chunks = chunks.slice(2, chunks.length - 1);
     var list = chunks.map(extractProps);
     done(null, list);
@@ -74,7 +74,7 @@ Unrar.prototype._exec = function (args, done) {
 function extractProps (raw) {
   var desc = {};
 
-  var props = raw.split('\n');
+  var props = raw.split(/\r?\n/);
   props.forEach(function (prop) {
     prop = prop.split(': ');
     var key = normalizeKey(prop[0]);
