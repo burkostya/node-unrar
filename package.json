@@ -20,8 +20,9 @@
     "README.md"
   ],
   "devDependencies": {
-    "mocha": "~1.14.0",
-    "chai": "~1.8.1"
+    "chai": "~1.8.1",
+    "memorystream": "^0.3.1",
+    "mocha": "~1.14.0"
   },
   "readmeFilename": "README.md"
 }
