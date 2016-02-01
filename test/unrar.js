@@ -1,4 +1,5 @@
 var path = require('path');
+var MemoryStream = require('memorystream');
 
 var expect = require('chai').expect;
 
@@ -45,6 +46,19 @@ describe('unrar', function () {
         done();
       });
       stream.on('error', done);
+    });
+  });
+  it('should accept archives with white spaces in name', function (done) {
+    var archive = new Unrar(path.resolve(__dirname, 'archive with spaces in name.rar'));
+    archive.list(function onListEntries (err, entries) {
+      expect(err).to.not.exist;
+      expect(entries).to.have.length(5);
+      var stream = archive.stream(entries[0].name);
+      var memStream = MemoryStream.createWriteStream();
+      memStream.on('finish', function() {
+        done();
+      });
+      stream.pipe(memStream);
     });
   });
 });
