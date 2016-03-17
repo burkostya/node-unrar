@@ -8,6 +8,7 @@ var Unrar = require('../index.js');
 describe('unrar', function () {
   var archivePath = path.resolve(__dirname, 'archive.rar');
   var protectedArchivePath = path.resolve(__dirname, 'archive-pass.rar');
+  var multipartArchivePath = path.resolve(__dirname, 'archive.part1.rar');
   it('should list entries', function (done) {
     var archive = new Unrar(archivePath);
     archive.list(function onListEntries (err, entries) {
@@ -24,6 +25,14 @@ describe('unrar', function () {
     archive.list(function onListEntries (err, entries) {
       expect(err).to.not.exist;
       expect(entries).to.have.length(5);
+      done();
+    });
+  });
+  it('should list all multipart entries', function (done) {
+    var archive = new Unrar(multipartArchivePath);
+    archive.list(function onListEntries (err, entries) {
+      expect(err).to.not.exist;
+      expect(entries).to.have.length(6);
       done();
     });
   });
