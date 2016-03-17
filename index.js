@@ -39,7 +39,7 @@ Unrar.prototype.list = function(done) {
     var i = 0;
     list = [];
     for (var item in unique) {
-      list[i++] = arrResult[item];
+      list[i++] = unique[item];
     }
     // End Filter & Remove dublicates
 
