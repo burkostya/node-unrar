@@ -33,7 +33,7 @@ Unrar.prototype.list = function(done) {
     var unique = {};
     for (i = 0, n = list.length; i < n; i++) {
       var item = list[i];
-      if (item.name) // Only proper items
+      if (item.name && item.ratio !== "-->" && item.ratio !== "<->") // Only proper items
         unique[fileId(item)] = item;
     }
     var i = 0;
@@ -99,7 +99,7 @@ Unrar.prototype._exec = function(args, done) {
  * @return {String} id
  */
 function fileId(item) {
-  return item.name + item.type + item.size;
+  return [item.name, item.type, item.crc32].join("-");
 }
 
 /**
