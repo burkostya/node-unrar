@@ -70,4 +70,15 @@ describe('unrar', function () {
       stream.pipe(memStream);
     });
   });
+  it('should list rar manifest entries uniquely within multipart rar files', function (done) {
+    var archive = new Unrar(path.resolve(__dirname, 'test-unique-file.rar'));
+    archive.list(function onListEntries (err, entries) {
+      expect(err).to.not.exist;
+      expect(entries).to.have.length(3);
+      expect(entries[0].ratio).to.equal("<--");
+      expect(entries[1].ratio).to.equal("98%");
+      expect(entries[2].ratio).to.equal("<--");
+      done();
+    });
+  });
 });
