@@ -21,7 +21,7 @@ var Unrar = function(options) {
 Unrar.prototype.list = function(done) {
   var self = this;
 
-  self._exec(['vt', '-v'], function(err, stdout) {
+  var child = self._exec(['vt', '-v'], function(err, stdout) {
     if (err) {
       return done(err);
     }
@@ -45,6 +45,13 @@ Unrar.prototype.list = function(done) {
 
     done(null, list);
   });
+
+  child.stderr.on('data', function(data) {
+    if (data.toString().trim().indexOf('Enter password') === 0) {
+      child.kill();
+      done(new Error('Password protected file'));
+    }
+  })
 };
 
 /**
@@ -65,6 +72,7 @@ Unrar.prototype.stream = function(entryname) {
  * @private
  * @param  {Array}    args Arguments
  * @param  {Function} done Callback
+ * @return {ChildProcess}
  */
 Unrar.prototype._exec = function(args, done) {
   var self = this;
@@ -73,7 +81,7 @@ Unrar.prototype._exec = function(args, done) {
     'unrar ' +
     args.join(' ') +
     ' "' + self._filepath + '"';
-  exec(command, function(err, stdout, stderr) {
+  return exec(command, function(err, stdout, stderr) {
     if (err) {
       return done(err);
     }
