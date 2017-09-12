@@ -6,7 +6,8 @@ Unrars rar archives with `unrar` utility
 
 `npm install unrar`
 
-You must have `unrar` tool in the path
+You must have `unrar` tool in the path.
+For windows download from http://www.rarlab.com/rar_add.htm
 
 ## Example
 
