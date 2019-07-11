@@ -18,7 +18,8 @@ var archive = new Unrar('archive.rar');
 // or
 // var archive = new Unrar({
 //   path:      protectedArchivePath,
-//   arguments: ['-pPassword']
+//   arguments: ['-pPassword'],
+//   $bin: pathToUnrarBin
 // });
 
 archive.list(function (err, entries) {
