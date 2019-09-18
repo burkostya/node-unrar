@@ -19,7 +19,7 @@ var archive = new Unrar('archive.rar');
 // var archive = new Unrar({
 //   path:      protectedArchivePath,
 //   arguments: ['-pPassword'],
-//   bin: pathToUnrarBin
+//   bin: pathToUnrarBin // Default: unrar
 // });
 
 archive.list(function (err, entries) {
