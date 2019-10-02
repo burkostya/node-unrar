@@ -17,6 +17,17 @@ describe('unrar', function () {
       done();
     });
   });
+  it('should accept unrar binary', function (done) {
+    var archive = new Unrar({
+      path: archivePath,
+      bin:  'unrar', // Path to an other unrar binary, you can download unrar binaries from https://www.rarlab.com/rar_add.htm
+    });
+    archive.list(function onListEntries (err, entries) {
+      expect(err).to.not.exist;
+      expect(entries).to.have.length(5);
+      done();
+    });
+  });
   it('should accept unrar arguments', function (done) {
     var archive = new Unrar({
       path:      protectedArchivePath,
